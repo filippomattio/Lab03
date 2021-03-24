@@ -2,6 +2,10 @@ package it.polito.tdp.spellchecker;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+
+import java.lang.ModuleLayer.Controller;
+
+import it.polito.tdp.spellchecker.model.Dictionary;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,7 +16,17 @@ public class EntryPoint extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Scene.fxml"));
+        Parent root = loader.load();
+        
+        FXMLController c = loader.getController();
+        
+        Dictionary m = new Dictionary();
+        
+        c.setModel(m);
+       
+        
+        
         
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
